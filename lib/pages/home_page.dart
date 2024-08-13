@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Calculadora de IMC"),
         centerTitle: true,
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.redAccent,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -30,13 +30,15 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
               child: TextField(
+                keyboardType: TextInputType.number,
                 controller: controllerPeso,
                 decoration: const InputDecoration(label: Text("Peso(kg)")),
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-              child: TextField(
+              child: TextFormField(
+                keyboardType: TextInputType.number,
                 controller: controllerAltura,
                 decoration: const InputDecoration(label: Text("Altura(m)")),
               ),
@@ -45,9 +47,9 @@ class _HomePageState extends State<HomePage> {
               height: 16,
             ),
             ElevatedButton(
-                onPressed: calcularIMC,
+                onPressed: _calcularIMC,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amberAccent,
+                  backgroundColor: Colors.redAccent,
                 ),
                 child: const Text(
                   "Calcular",
@@ -67,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void calcularIMC() {
+  void _calcularIMC() {
     double peso = double.parse(controllerPeso.text);
     double altura = double.parse(controllerAltura.text);
     double imc = peso / (altura * altura);
@@ -86,5 +88,10 @@ class _HomePageState extends State<HomePage> {
         _informacoes = "Obesidade grau III";
       }
     });
+    _limparCampos();
+  }
+  void _limparCampos(){
+    controllerPeso.text = "";
+    controllerAltura.text = "";
   }
 }
