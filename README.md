@@ -1,2 +1,2 @@
 # calc_imc
- Calculadora de IMC
+ Calculadora de IMC em Dart/Flutter
